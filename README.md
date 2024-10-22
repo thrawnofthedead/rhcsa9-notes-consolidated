@@ -2,9 +2,7 @@
 
 This is a consolidation of two RHCSA Note Repositories ([jrandj/redhat](https://github.com/jrandj/redhat)/[1980is/rhcsa-9](https://github.com/1980is/rhcsa-9)) as well as my own notes from the Stormwind Studio's training course.
 
-[The official Red Hat 9.1 Release Notes in pdf format.](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/9/pdf/9.1_release_notes/red_hat_enterprise_linux-9-9.1_release_notes-en-us.pdf)
-
-[The exam objectives](https://github.com/1980is/rhcsa-9/blob/main/RHCSA%209%20Exam%20Objectives.md)
+This is still a WIP as I continue the training course and Sander Van Vugt book, as well as organize the notes into a fashion that makes most sense to me.
 
 ## Table of Contents
 
