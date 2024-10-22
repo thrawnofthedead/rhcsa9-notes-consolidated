@@ -1,0 +1,1 @@
+# rhcsa9-notes-consolidated
