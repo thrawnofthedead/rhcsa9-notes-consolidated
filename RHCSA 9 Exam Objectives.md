@@ -1,12 +1,8 @@
-# Welcome!
+# Exam objectives
 
-This is a consolidation of two RHCSA Note Repositories ([jrandj/redhat](https://github.com/jrandj/redhat)/[1980is/rhcsa-9](https://github.com/1980is/rhcsa-9)) as well as my own notes from the Stormwind Studio's training course.
+## Study points for the exam
 
-[The official Red Hat 9.1 Release Notes in pdf format.](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/9/pdf/9.1_release_notes/red_hat_enterprise_linux-9-9.1_release_notes-en-us.pdf)
-
-[The exam objectives](https://github.com/1980is/rhcsa-9/blob/main/RHCSA%209%20Exam%20Objectives.md)
-
-## Table of Contents
+RHCSA exam candidates should be able to accomplish the tasks below without assistance. These have been grouped into several categories.
 
 Understand and use essential tools
 
@@ -104,3 +100,5 @@ Manage containers
 - Run a service inside a container
 - Configure a container to start automatically as a systemd service
 - Attach persistent storage to a container
+
+As with all Red Hat performance-based exams, configurations must persist after reboot without intervention.
