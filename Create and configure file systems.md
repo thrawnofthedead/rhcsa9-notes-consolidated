@@ -332,9 +332,9 @@ With the exception of "/bin" (which is a symbolic link to /usr/bin) and "/afs" (
 
 When you do an ``ls -l``. The first identifier tells us what kind of file type it is.
 
-![file-type-identifier](RHCSA%20Notes%20Consolidated/pictures/file-type-list.png)
+![file-type-identifier](./pictures/file-type-list.png)
 
-![Types of files](RHCSA%20Notes%20Consolidated/pictures/file-type.png)
+![Types of files](./pictures/file-type.png)
 
 Linux applies permissions in the following order.
 
@@ -383,7 +383,7 @@ Looks like this: -rw**s**r--r--
 
 If it's a lower case "s", then both the execute bit and the SUID bit are set. If it's and upper case, only the SUID bit is set.
 
-![Uppercase S in SUID](RHCSA%20Notes%20Consolidated/pictures/suid-capital-s.png)
+![Uppercase S in SUID](./pictures/suid-capital-s.png)
 
 To remove suid, ``chmod u-s filename`` or ``chmod 0664 filename`` where the 0 is the removes the special bit.
 
@@ -410,7 +410,7 @@ If the group has rwx on the directory, that means that any member of the that ow
 
 The Sticky bit makes it so that delete only works if the **owner** deletes the file. Read about this problem under the SGID = 2 section. To check who is the owner of the current directory, ``ls -ld .`` You can also see it with the classic ``ls -la`` and it will be the first item listed. As you can see in the picture, the user armann and the group armann is the owner of the Goonies directory. You can also see that the Sticky bit is set for that directory.
 
-![Directory owner](RHCSA%20Notes%20Consolidated/pictures/sticky-bit.png)
+![Directory owner](./pictures/sticky-bit.png)
 
 
 This applies a sticky bit to all filed in the current directory.
@@ -509,7 +509,7 @@ If you are running ext4, you can grow the filesystem with ``resize2fs``.
 
 Remember that it doesn't matter if you use the mapper path or not, both are symbolic links to the same thing.
 
-![LVM-Mapper](RHCSA%20Notes%20Consolidated/pictures/lvm-mapper.png)
+![LVM-Mapper](./pictures/lvm-mapper.png)
 
 ## Expand a LVM partition
 
@@ -518,7 +518,7 @@ Let's use this setup as an example.
 We have the "vdc" disk that has four partitions.
 Partition 1, 3 and 4 are all using the "opt" volume group, and "lv_opt" logical volume group.
 
-![lsblk](RHCSA%20Notes%20Consolidated/pictures/lvm1.png)
+![lsblk](./pictures/lvm1.png)
 
 ### Step 2 ###
 Let's add 2GB to the 10GB "vdc" disk, and then expand the "vdc4" partition using all that extra space.
@@ -665,7 +665,7 @@ Run ``partprobe``
 Run ``lsblk`` and you should see the increased size. 
 /dev/vda3 was increased by 10GiB.
 
-![partprobe](RHCSA%20Notes%20Consolidated/pictures/gpt1.png)
+![partprobe](./pictures/gpt1.png)
 
 ### Step 5
 

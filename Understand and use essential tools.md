@@ -9,7 +9,7 @@
 
     * Common commands and their options, as well as vim usage, are shown below:
         | Command        | Options                                                                                                                                                          | Description                                     |
-        |----------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------|
+        |----------------|--------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------|
         | ls             | -h (human readable) <br>  -a (show hidden) <br> -l (detailed) <br> -lt (newist file first) <br> -ltr (oldest file first)                                         | List of files and directories                   |
         | pwd            |                                                                                                                                                                  | Print working directory                         |
         | cd             | ~ (home) <br> / (root) <br> - (switch) <br> .. (parent)                                                                                                          | Change directories                              |

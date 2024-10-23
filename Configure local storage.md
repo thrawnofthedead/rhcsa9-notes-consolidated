@@ -15,7 +15,7 @@
         df -h
         ```
 
-    * In RHEL block devices are an abstraction for certain hardware, such hard disks. The *blkid* command lists all block devices. The *lsblk* command lists more details about block devices.
+    * In RHEL block devices are an abstraction for certain hardware, such hard disks. The *blkid* command lists all block devices. The *lsblk* command lists more details about block devices. If for some reason you don't think that is correct you can ``cat /proc/partitions``
 
     * To list all disks and partitions:
         ```shell   
@@ -37,8 +37,9 @@
         ```shell   
         partprobe
         ```
-    
-1. Create and remove physical volumes
+    * Deleting partitions in Fdisk does not delete the data on the partition. The only thing that's deleted is a line in the partition table. If you delete a partition in order to extend it, when you create a new one, Fdisk asks "*Do you want to remove the signature? [Y]es/[N]o"* Select **no**, otherwise you will delete all data on the partition.
+
+2. Create and remove physical volumes
 
     * Logical Volume Manager (LVM) is used to provide an abstraction layer between the physical storage and the file system. This enables the file system to be resized, to span across multiple physical disks, use random disk space, etc. One or more partitions or disks (physical volumes) can form a logical container (volume group), which is then divided into logical partitions (called logical volumes). These are further divided into physical extents (PEs) and logical extents (LEs).
 
@@ -143,6 +144,22 @@
     * The *e2label* command can be used to change the label on ext file systems. This can then be used instead of the UUID.
     
 1. Add new partitions and logical volumes, and swap to a system non-destructively
+    1. Create the parition. Partitions types are important on the exam. In Fdisk remember to set the type to swap.
+    2. Set up a Linux swap area on the device or file we created. ``mkswap /dev/vdd1`` You could also do ``mkswap -L myswapspace /dev/  vdd1`` and use the label to mount it in fstab.
+    3. Mount the swap space in "/etc/fstab". In the first field you can use /dev/vdd1 or the UUID, or the label if you created one. !  [mkswap](./pictures/mkswap.png)
+    4. In the "/etc/fstab" file remember to mount the swap file to **none** and set the filesystem as swap.
+    5. To activate the swap run ``swapon -a`` 
+    6. Check out the new swap space ``free -h``
+
+If you have multiple swap files you can see the priority with ``swapon -s``
+
+### Swap from file
+
+1. sudo dd if=/dev/zero of=/swap count=2048 bs=1MiB
+2. chmod 600 /swap
+3. mkswap /swap
+4. swapon /swap
+5. fstab: /swap swap swap defaults 0 0
 
     * Virtual memory is equal to RAM plus swap space. A swap partition is a standard disk partition that is designated as swap space by the *mkswap* command. A file can also be used as swap space but that is not recommended.
 
@@ -169,15 +186,9 @@
     * The `/etc/fstab` file will need a new entry for the swap so that it is created persistently.
 # Storage
 
-## General notes
-
-### Deleting partitions
-Deleting partitions in Fdisk does not delete the data on the partition. The only thing that's deleted is a line in the partition table. If you delete a partition in order to extend it, when you create a new one, Fdisk asks "*Do you want to remove the signature? [Y]es/[N]o"*
-Select **no**, otherwise you will delete all data on the partition.
 
 ### Listing devices
-To see disks and partitions. ``lsblk``
-If for some reason you don't think that is correct you can ``cat /proc/partitions``
+
 
 ## Mount
 
@@ -215,23 +226,5 @@ Options=defaults \
 [Install] \
 WantedBy=multi-user.target
 
-## Swap
 
-### Swap from partition
 
-1. Create the parition. Partitions types are important on the exam. In Fdisk remember to set the type to swap.
-2. Set up a Linux swap area on the device or file we created. ``mkswap /dev/vdd1`` You could also do ``mkswap -L myswapspace /dev/vdd1`` and use the label to mount it in fstab.
-3. Mount the swap space in "/etc/fstab". In the first field you can use /dev/vdd1 or the UUID, or the label if you created one. ![mkswap](RHCSA%20Notes%20Consolidated/pictures/mkswap.png)
-4. In the "/etc/fstab" file remember to mount the swap file to **none** and set the filesystem as swap.
-5. To activate the swap run ``swapon -a`` 
-6. Check out the new swap space ``free -h``
-
-If you have multiple swap files you can see the priority with ``swapon -s``
-
-### Swap from file
-
-1. sudo dd if=/dev/zero of=/swap count=2048 bs=1MiB
-2. chmod 600 /swap
-3. mkswap /swap
-4. swapon /swap
-5. fstab: /swap swap swap defaults 0 0

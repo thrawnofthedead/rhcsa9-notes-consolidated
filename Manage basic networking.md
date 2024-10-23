@@ -188,7 +188,7 @@ Legacy command to see route information.
 
 You can use the "graphical" ``nmtui`` tool to configure your network connection. If you use ``nmtui``, remember to **set the subnet mask** when you enter the ip address. Using ``nmtui`` for the exam is better, it will save time.
 
-![nmtui](RHCSA%20Notes%20Consolidated/pictures/nmtui.png)
+![nmtui](./pictures/nmtui.png)
 
 Another way is to use the ``nmcli`` tool. Remember to swap out the name for the correct name you see when you execute ``nmcli connection show``
  ``nmcli connection edit enp1s0``

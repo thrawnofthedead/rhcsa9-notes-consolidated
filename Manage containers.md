@@ -414,7 +414,7 @@ Verify the mapped user is the owner on the host using ``ls -ld /directoryname``
 4. ``ls -Z`` To see Selinux label for the directory armann-db.
 5. 
 
-![rootless containers](RHCSA%20Notes%20Consolidated/pictures/rootless-containers.png)
+![rootless containers](./pictures/rootless-containers.png)
 
 ### Namespaces
 

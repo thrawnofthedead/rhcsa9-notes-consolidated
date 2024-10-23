@@ -142,7 +142,7 @@
         user2 ALL=(root) /bin/ls, /bin/df -h, /bin/date
 
 # Reset Root Password
-
+## Non-rd.break method
 Things have changed in RHEL 9. rd.break does not work anymore.
 These are the steps that need to be taken.
 
@@ -152,6 +152,20 @@ These are the steps that need to be taken.
 4. ``touch /.autorelabel``
 5. ``exec /usr/lib/systemd/systemd/`` To reboot the machine or ``/sbin/reboot -f``
 
+
+## rd.break method
+Apparently this isn't supposed to work in RHEL 9, but as of 9.4 I was successful with it. It's worth knowing multiple ways of doing it for both exam and real world applications
+1. Interupt boot process and hit `e` to edit your GRUB config
+2. Navigate to the end of the 'linux' line and add `rd.break`
+3. Boot system wit `ctrl+x`
+4. When you get into emergency mode, execute the command `mount | grep root`. You'll get output like this:
+![mount | grep root](./pictures/mount-o-grep-root.jpg)
+5. In the picture above we can see that the root filesystem is mounted to `/sysroot` with "`ro`" (read-only) permissions. We need to remount it as "`rw`" (read-write) with the command `mount -o remount,rw /sysroot`. If we check with `mount | grep root` again we can then see it was successful:
+![mount | grep root](./pictures/mountremountrw.jpg)
+6. Now we can use `chroot` to access the root filesystem and change the password: `chroot /sysroot`
+7. Then change the root password with `passwd root`
+8. Then tell SELinux not to complain that someone changed the root password by the command `touch /.autorelabel`
+9. Then `exit` to get out of your chroot session and `logout` to get out of the emergency shell
 # Users and Groups
 
 ## Users 
@@ -179,7 +193,7 @@ To set password options for John.
 
 You can also view the password options in **/etc/shadow**. You can see if the user account is locked out. The second field is the password hash. If the password hash starts with **!** The user account is locked out. As you can see, the user John is locked out.
 
-![The shadow file](RHCSA%20Notes%20Consolidated/pictures/shadow.png)
+![The shadow file](./pictures/shadow.png)
 
 You can also see if the account is locked with ``passwd -S armann`` 
 

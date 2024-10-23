@@ -267,8 +267,22 @@ To make static changes to Grub edit "/etc/default/grub". Commit the changes you 
 - graphical.target
   - A fully functioning target like multi-user.target but with a GUI.
 
+### Legacy Run Level Translations
+|Runlevel |          Target Units              |     Description    |
+|-------- | ---------------------------------- | -------------------|
+|1        | runlevel0.target.poweroff.target   | Shut down and power off the system |
+|2        | runlevel1.target.rescue.target     | Set up a rescue shell |
+|3        | runlevel3.target.multi-user.target | Set up a non-graphical multi-user system|
+|4        | runlevel4.target.multi-user.target | Set up a non-graphical multi-user system|
+|5        | runlevel5.target.graphical.target  | Set up a graphical multi-user system|
+|6        | runlevel6.target.reboot.target     | Shut down and reboot the system|
+* No translation layer for the emergency target as runlevel doesn't have an emergency equivelant, it's only something that exists in systemd
+
 To know what target you are in do ``systemctl get-default``. You can also do ``systemctl list-dependencies``
 Since I'm in the grapical.target, it lists first the default.target and then underneath it is multi-user.target.
+
+### List available targets
+`systemctl list-units --type target | less`
 
 ### Change the default systemd target
 
@@ -326,9 +340,9 @@ To make system tuning easier, use ``tuned``
 
 ## Working with TOP
 
-![Commands for TOP](RHCSA%20Notes%20Consolidated/pictures/topcommands.png)
+![Commands for TOP](./pictures/topcommands.png)
 
-![More Top Commands](RHCSA%20Notes%20Consolidated/pictures/topmorecommands.png)
+![More Top Commands](./pictures/topmorecommands.png)
 
 # Rsyslog
 

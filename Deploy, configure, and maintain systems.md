@@ -336,7 +336,7 @@
 
 # Crontab
 
-![Crontab](RHCSA%20Notes%20Consolidated/pictures/crontab.png)
+![Crontab](./pictures/crontab.png)
 
 ``crontab -e``
 Edits the current crontab using the editor specified by the VISUAL or EDITOR environment variables.
@@ -374,7 +374,7 @@ Use ``atrm`` to remove jobs from the list.
 ``dnf history undo 10``
 ``sudo dnf history rollback 10`` Let's say you want to undo everything that was installed after number 10. This command seen below would remove mutt, emacs and powertop.
 
-![dnf rollback](RHCSA%20Notes%20Consolidated/pictures/rollback.png)
+![dnf rollback](./pictures/rollback.png)
 
 To reinstall something that was removed. \
 ``dnf history redo 15``
@@ -405,7 +405,7 @@ on the root of your hard disk. ``dd if=/dev/sr0 of=/rhel9.iso bs=1M status=progr
 
 Let's edit "/etc/fstab" so it's mounted automatically for us. You can see the last line, that's how we mount the rhel9.iso automatically after boot.
 
-![repository](RHCSA%20Notes%20Consolidated/pictures/repo.png)
+![repository](./pictures/repo.png)
 
 Let's mount it.  ``mount -a``
 
@@ -465,6 +465,7 @@ To see all the software you are entitled to use with the subscription attached t
 
 * List dependencies that start **after** the service starts
 `systemctl list-dependencies --after`
+`systemctl list-dependencies --after name.service`
 
 * List dependencies that start **before** the service starts (that this service relies upon)
 `systemctl list-dependencies --before`
